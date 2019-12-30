@@ -1,0 +1,42 @@
+.wrapper_button{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button{
+    background-color: #f1c933;
+    color: #073590;
+    width: 12vw;
+    height: 4vh;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: large;
+    
+}
+
+
+@media (max-width: 600px) { 
+
+    .wrapper_button{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 5px;
+    }
+  
+    button{
+        display: flex;
+        background-color: #f1c933;
+        color: #073590;
+        width: 50vw;
+        height: 5vh;
+        border-radius: 15px;
+        font-weight: bolder;
+        font-size: large;
+        justify-content: center;
+        position: relative;
+        top: 50px;
+    }
+    }
+    

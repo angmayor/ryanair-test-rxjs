@@ -1,0 +1,79 @@
+.wrapper{
+    display: inline;
+    margin: auto;
+    text-align: center;
+    padding-left: 20px;
+    font-size: larger;
+    
+}
+
+.airport_selector{
+    width: 25vw;
+    height: 3vh;
+    display: block;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: small;
+    color: white;
+    margin: auto;
+    margin-top: 20px;
+    padding-top: 3px;
+    border-radius: 15px 50px;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: aliceblue;
+}
+
+@media (max-width: 600px) { 
+    .airport_selector{
+        width: 55vw;
+        height: 3.3vh;
+        margin: auto;
+        display: block;
+        text-align: start;
+        padding: 1px 5px;
+        color: white;
+        font-size: larger;
+        background-color: #1976db;
+        border-style: solid;
+        border-color: aliceblue;
+        border-radius: 15px;
+    }
+    
+    .para_div{
+        margin-top: 10px;
+        display: block;
+        margin: auto;
+        text-align: start;
+        padding-left: 5px;
+        font-size: larger;
+        background-color: #1976db;
+        border-style: solid;
+        border-color: aliceblue;
+        border-radius: 15px;
+    }
+    select{
+        color:white;
+        border-style: solid;
+
+    }
+    
+    .wrapper{
+        
+        width: 90vw;
+        height: 6vh;
+        display: block;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: small;
+        color: white;
+        margin: auto;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-radius: 15px;
+    }
+
+
+}

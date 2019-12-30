@@ -1,0 +1,16 @@
+<form [formGroup]="airport">
+<div class="wrapper">
+
+<div class="airport_selector">
+<label>
+    {{ input }}
+</label>
+<select formControlName="selectedAirportValue" (change)="onChangeSelectedAirpot($event)">
+    <option *ngFor="let city of cities" [value]="city.iataCode">
+        {{city.name}}
+    </option>
+</select>
+</div>
+
+</div>
+</form>

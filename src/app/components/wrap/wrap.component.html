@@ -1,0 +1,43 @@
+
+<div class="body">
+
+  <div class="wrapper_airport">
+    <app-airport-selector
+      (sendIataCode)="getAirportsIataCodes($event)"
+      [input]="from"
+      [cities]="originCities$ | async"
+    ></app-airport-selector>
+    <app-airport-selector
+      (sendIataCode)="getAirportsArrivallIataCodes($event)"
+      [input]="to"
+      [cities]="destinationCities$ | async"
+    ></app-airport-selector>
+  </div>
+
+
+  <div class="wrapper_date">
+    <app-flight-dates
+      (selectedDate)="selectedDepartureDate($event)"
+      [input]="departure"
+    >
+    </app-flight-dates>
+    <app-flight-dates
+      (selectedDate)="selectedArrivalDate($event)"
+      [input]="arrive"
+    >
+    </app-flight-dates>
+  </div>
+
+
+
+  <div class="wrapper_button">
+    <a [routerLink]="['selection']">
+        <app-button (click)="onClickSelectedInformation()"></app-button>
+    </a>
+  </div>
+
+    
+</div>
+
+
+<router-outlet></router-outlet>

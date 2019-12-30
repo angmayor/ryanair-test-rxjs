@@ -1,0 +1,30 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+}
+
+h4{
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+@media (max-width: 600px) { 
+
+    .wrapper{
+        display: flex;
+        align-items: center;
+        margin: 0 15vw;
+    }
+    
+    h4{
+        margin-right: 15px;
+        margin-left: 15px;
+        margin-top: 15px;
+    }
+
+    select{
+        border-color: white;
+    }
+
+}

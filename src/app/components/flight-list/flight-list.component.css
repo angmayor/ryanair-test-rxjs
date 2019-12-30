@@ -1,0 +1,96 @@
+
+.wrapper_button{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.volverButton{
+    background-color: #f1c933;
+    color: #073590;
+    width: 10vw;
+    height: 4vh;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: large;
+    margin-top: 15px;
+     
+}
+
+.selectFligthButton{
+    color: white;
+    border-color: #073590;
+}
+
+.flex-container{
+    padding: 3px;
+    margin: 10px;
+    display: flex;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.flex-item{
+  background: linear-gradient(0deg, rgba(239,239,244,1) 0%, rgba(241,201,51,0.9486169467787114) 25%, rgba(255,255,255,1) 100%);
+  padding: 5px;
+  width: 200px;
+  height: 180px;
+  margin: 2px;
+  border-radius: 5%;
+  color:  #073590;
+  font-weight: lighter;
+  font-size: 12px;
+  text-align: center;
+}
+
+
+@media (max-width: 600px) { 
+
+.wrapper_button{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.volverButton{
+    background-color: #f1c933;
+    color: #073590;
+    width: 50vw;
+    height: 5vh;
+    margin-top: 50px;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: large;
+    
+}
+
+
+h3{ margin: auto;}
+
+
+.flex-container{
+    display: flex;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+.flex-item{
+  background: linear-gradient(0deg, rgba(239,239,244,1) 0%, rgba(241,201,51,0.9486169467787114) 25%, rgba(255,255,255,1) 100%);
+  width: 200px;
+  height: 160px;
+  border-radius: 5%;
+  
+  color:  #073590;
+  font-weight: lighter;
+  font-size: 12px;
+  text-align: center;
+
+}
+
+}
