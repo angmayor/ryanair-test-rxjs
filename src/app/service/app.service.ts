@@ -33,7 +33,8 @@ export class AppService {
     arrivalAirport: string,
     departureDate: string,
     arrivalDate: string
-  ): Observable<any> {
+  ): Observable<any> { // Type
+    // Bad idea
     this.departureAirport = departureAirport;
     this.arrivalAirport = arrivalAirport;
     this.departureDate = departureDate;
@@ -44,6 +45,7 @@ export class AppService {
   }
 
   getOriginCities(): Observable<Airport[]> {
+    // Reuse getAirpots method and consider caching
     return this.service.get<Origin>(this.AIRPORTS_API).pipe(
       map(data =>
         data.airports.map(item => ({
@@ -55,6 +57,7 @@ export class AppService {
   }
 
   getDestinationCities(originIataCode): Observable<Airport[]> {
+    // Reuse getAirpots method and consider caching
     return this.service.get<Origin>(this.AIRPORTS_API).pipe(
       map(data => {
         // tslint:disable-next-line:no-string-literal
@@ -75,7 +78,9 @@ export class AppService {
     );
   }
 
+  // Not very accurate name
   getResultFromSelectedTripOnWrapComponent() {
+    // Duplicate code
     return this.service
       .get(`${this.FLIGHT_API}${this.departureAirport}/to/${this.arrivalAirport}
     /${this.departureDate}/${this.arrivalDate}/250/unique/?limit=15&offset-0`);

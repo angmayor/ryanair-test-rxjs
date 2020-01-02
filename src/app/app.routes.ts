@@ -2,7 +2,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { WrapComponent } from "../app/components/wrap/wrap.component";
 import { FlightListComponent } from "../app/components/flight-list/flight-list.component";
 
-const APP_ROUTES: Routes = [
+const APP_ROUTES: Routes = [ // Lazy loading
   {
     path: "home",
     component: WrapComponent,

@@ -27,10 +27,10 @@ import { ButtonComponent } from "./components/shared/button/button.component";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    APP_ROUTING
+    APP_ROUTING // Better to have Module here
   ],
 
-  exports: [
+  exports: [ // Not needed
     AppComponent,
     AirportSelectorComponent,
     FlightListComponent,

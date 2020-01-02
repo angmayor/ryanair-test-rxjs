@@ -7,11 +7,14 @@ import { FormGroup, FormControl } from "@angular/forms";
   styleUrls: ["./flight-dates.component.css"]
 })
 export class FlightDatesComponent implements OnInit {
+  // What's input?
   @Input() input: string;
+  // Same here about the name, it could be something like 'change'
   @Output() selectedDate = new EventEmitter<Date>();
 
   DATE_DEPARTURE_RESULT: Date;
 
+  // Should be done inside ngOnInit
   dates = new FormGroup({
     departure: new FormControl(),
     arrive: new FormControl()

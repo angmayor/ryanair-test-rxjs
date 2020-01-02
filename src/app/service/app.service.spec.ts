@@ -39,6 +39,7 @@ describe("AppService", () => {
     expect(service).toBeTruthy();
   });
 
+  // test descriptions should be more descriptive :P
   it("should getAirports", () => {
     const airportsStub = {
       routes: { MAD: "DUB" },
@@ -46,12 +47,13 @@ describe("AppService", () => {
     };
 
     service.getAirports().subscribe(airport => {
+      // This is giving a false positive
       expect(airport).toEqual(airportsStub);
     });
 
     const request = httpMock.expectOne(service.AIRPORTS_API);
     expect(request.request.method).toBe("GET");
-    request.flush(airportsStub);
+    request.flush(airportsStub); // ??
   });
 
   it("should getFlights", () => {
@@ -71,12 +73,17 @@ describe("AppService", () => {
 
     service
       .getFlights(
+        /*
+          Consider:
+          const { departureAirport, arrivalAirport, departureDate, arrivalDate } = flightParametersStub;
+        */
         flightParametersStub.departureAirport,
         flightParametersStub.arrivalAirport,
         flightParametersStub.departureDate,
         flightParametersStub.arrivalDate
       )
       .subscribe(flight => {
+        // False positive
         expect(flight).toEqual(flightStub);
       });
 
@@ -97,6 +104,7 @@ describe("AppService", () => {
     service
       .getOriginCities()
       .pipe(
+        // ???
         map(city =>
           city.map(item => ({
             iataCode: item.iataCode,
@@ -104,7 +112,7 @@ describe("AppService", () => {
           }))
         )
       )
-      .subscribe(city => expect(city).toEqual(cityStub));
+      .subscribe(city => expect(city).toEqual(cityStub)); // False positive
 
     const request = httpMock.expectOne(service.AIRPORTS_API);
     expect(request.request.method).toBe("GET");
@@ -113,6 +121,7 @@ describe("AppService", () => {
 
   it("should getDestinationCities", () => {
     const originIataCodeStub = "DUB";
+    // missing expect
     service.getDestinationCities().pipe(
       map(data => {
         // tslint:disable-next-line:no-string-literal
@@ -129,6 +138,7 @@ describe("AppService", () => {
           }
           return result;
         }, []);
-      });
+      })
+    );
   });
 });
