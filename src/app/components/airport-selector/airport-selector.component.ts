@@ -8,11 +8,15 @@ import { FormControl, FormGroup } from "@angular/forms";
   styleUrls: ["./airport-selector.component.css"]
 })
 export class AirportSelectorComponent implements OnInit {
+  // What's input?
   @Input() input: string;
   @Input() cities: string[];
+  // This output will be used later on a template, so the name can be something like 'change'
   @Output() sendIataCode = new EventEmitter<string>();
 
+  // Should be done inside ngOnInit
   airport = new FormGroup({
+    // selectedAirport should be enough. *Value is redundandt, we already know it's a value :P
     selectedAirportValue: new FormControl()
   });
 

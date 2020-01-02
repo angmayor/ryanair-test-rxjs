@@ -1,8 +1,9 @@
+<!-- indentation-->
 <form [formGroup]="dates">
         <div class="wrapper">   
             <h4>{{ input }}</h4>
             <label for="date"></label> <br>
-            <input type="date" name="date" #departure (change)= "onChangeDate(departure.value)">
+            <input type="date" name="date" #departure (change)= "onChangeDate(departure.value)"> <!-- use $event -->
         </div>
 </form>
 

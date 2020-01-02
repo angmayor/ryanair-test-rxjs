@@ -69,7 +69,7 @@ describe("FlightListComponent", () => {
 
   it("should get onInitSelectedFlightInformation$", done => {
     component.selectedFlightInformation$ = AppServiceStub.getResultFromSelectedTripOnWrapComponent().pipe(
-      map<Flight, FlightsDetail[]>(flight => flight.flights)
+      map<Flight, FlightsDetail[]>(flight => flight.flights) //??
     );
 
     component.selectedFlightInformation$.subscribe(value => {

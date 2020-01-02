@@ -1,6 +1,6 @@
 <div>
     <ul class="flex-container">
-        <li class="flex-item"  *ngFor="let flights of selectedFlightInformation$ | async"> 
+        <li class="flex-item"  *ngFor="let flights of selectedFlightInformation$ | async"><!-- flight -->
             <img src="https://img.icons8.com/wired/64/000000/airplane-take-off.png">
             <p>PRICE: {{flights.price | number: '1.0-2' }} {{flights.currency }}</p> 
             <h5>DEPARTURE: {{flights.dateFrom | date:'medium'}}</h5> 
@@ -12,7 +12,7 @@
 
 <div class="wrapper_button">
         <a [routerLink]="['/home']" routerLinkActive="router-link-active" >
-            <button class="volverButton">Volver</button>
+            <button class="volverButton">Volver</button> <!-- spanglish -->
         </a>
 </div>
 

@@ -17,6 +17,7 @@ export class WrapComponent implements OnInit {
   departure = "DESDE:";
   arrive = "HASTA:";
 
+  // Convetntion is that capitalized properties are used as constants
   DEPARTURE_IATACODE: string;
   ARRIVAL_IATACODE: string;
   DEPARTURE_DATE: string;
@@ -32,6 +33,7 @@ export class WrapComponent implements OnInit {
     this.originCities$ = this.appService.getOriginCities();
   }
 
+  // Convention is that get* Methods are getters and they should return something
   getAirportsIataCodes(iataCode) {
     this.destinationCities$ = this.appService.getDestinationCities(iataCode);
     this.DEPARTURE_IATACODE = iataCode;
@@ -41,6 +43,7 @@ export class WrapComponent implements OnInit {
     this.ARRIVAL_IATACODE = iataCode;
   }
 
+  // Method names should be verbs
   selectedDepartureDate(departureDate) {
     this.DEPARTURE_DATE = departureDate;
   }

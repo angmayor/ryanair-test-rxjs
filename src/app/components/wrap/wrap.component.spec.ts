@@ -71,6 +71,7 @@ describe("WrapComponent", () => {
   it("should destinationCities$ have Airport infomation", () => {
     component.destinationCities$ = AppServiceStub.getDestinationCities();
     component.destinationCities$.subscribe(value => {
+      // False positive
       expect(value).toEqual({
         iataCode: "MAD",
         name: "Madrid"
@@ -106,6 +107,7 @@ describe("WrapComponent", () => {
   it("should onClickSelectedInformation$ get result of the flight search", () => {
     component.resultSearchFlight$ = AppServiceStub.getFlights();
     component.resultSearchFlight$.subscribe(value => {
+      // False positive
       expect(value).toEqual({
         dateFrom: "30122019",
         dateTo: "15012020",
