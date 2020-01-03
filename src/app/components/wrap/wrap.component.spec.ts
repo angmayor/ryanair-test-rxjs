@@ -68,13 +68,14 @@ describe("WrapComponent", () => {
     expect(spyOnGetAirportsIataCodes).toHaveBeenCalled();
   });
 
-  it("should destinationCities$ have Airport infomation", () => {
+  it("should destinationCities$ have Airport infomation", done => {
     component.destinationCities$ = AppServiceStub.getDestinationCities();
     component.destinationCities$.subscribe(value => {
       expect(value).toEqual({
         iataCode: "MAD",
         name: "Madrid"
       });
+      done();
     });
   });
 

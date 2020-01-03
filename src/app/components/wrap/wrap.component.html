@@ -3,14 +3,14 @@
 
   <div class="wrapper_airport">
     <app-airport-selector
-      (sendIataCode)="getAirportsIataCodes($event)"
-      [input]="from"
-      [cities]="originCities$ | async"
+      (sendIataCode)="destinationDesiredAirport($event)"
+      [title]="from"
+      [airports] = "airports$"
     ></app-airport-selector>
     <app-airport-selector
-      (sendIataCode)="getAirportsArrivallIataCodes($event)"
-      [input]="to"
-      [cities]="destinationCities$ | async"
+      (sendIataCode)= "arrivallIataCodes($event)"
+      [title]= "to"
+      [airports]= "destinationCities$"
     ></app-airport-selector>
   </div>
 

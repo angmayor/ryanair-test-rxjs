@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { AppService } from "src/app/service/app.service";
-import { Observable } from "rxjs";
+import { Observable, combineLatest, of } from "rxjs";
+import { map } from "rxjs/operators";
+import { Airport } from "src/app/models/airport.model";
 
 @Component({
   selector: "app-wrap",
@@ -17,44 +19,50 @@ export class WrapComponent implements OnInit {
   departure = "DESDE:";
   arrive = "HASTA:";
 
-  DEPARTURE_IATACODE: string;
-  ARRIVAL_IATACODE: string;
-  DEPARTURE_DATE: string;
-  ARRIVAL_DATE: string;
+  departure_iataCode: string;
+  arrival_iataCode: string;
+  departure_date: string;
+  arrival_date: string;
 
   originCities$: Observable<any>;
   destinationCities$: Observable<any>;
   resultSearchFlight$: Observable<any>;
+  inputOnKeyUpSearchFligth$: Observable<Airport[]>;
+  airports$: Observable<Airport[]>;
+  filterSearchFligthWords$: Observable<string>;
+  inputOnKeyUpSearchArrivalFligth$: Observable<any>;
 
   constructor(private appService: AppService) {}
 
   ngOnInit() {
-    this.originCities$ = this.appService.getOriginCities();
+    this.airports$ = this.appService.getAirports();
   }
 
-  getAirportsIataCodes(iataCode) {
-    this.destinationCities$ = this.appService.getDestinationCities(iataCode);
-    this.DEPARTURE_IATACODE = iataCode;
+  destinationDesiredAirport(airport) {
+    this.departure_iataCode = airport.airportSelected;
+    this.destinationCities$ = this.appService.getDestinationCities(
+      airport.airportSelected
+    );
   }
 
-  getAirportsArrivallIataCodes(iataCode) {
-    this.ARRIVAL_IATACODE = iataCode;
+  arrivallIataCodes(airport) {
+    this.arrival_iataCode = airport.airportSelected;
   }
 
   selectedDepartureDate(departureDate) {
-    this.DEPARTURE_DATE = departureDate;
+    this.departure_date = departureDate;
   }
 
   selectedArrivalDate(arrivalDate) {
-    this.ARRIVAL_DATE = arrivalDate;
+    this.arrival_date = arrivalDate;
   }
 
   onClickSelectedInformation() {
-    this.resultSearchFlight$ = this.appService.getFlights(
-      this.DEPARTURE_IATACODE,
-      this.ARRIVAL_IATACODE,
-      this.DEPARTURE_DATE,
-      this.ARRIVAL_DATE
+    this.appService.getSelectedInformationOfTheFlight(
+      this.departure_iataCode,
+      this.arrival_iataCode,
+      this.departure_date,
+      this.arrival_date
     );
   }
 }

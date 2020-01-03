@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { FlightsDetail } from "../models/flights-detail.model";
 import { Origin } from "../models/origin.model";
 import { Airport } from "../models/airport.model";
@@ -21,30 +21,19 @@ export class AppService {
   arrivalAirport: string;
   departureDate: string;
   arrivalDate: string;
+  originCities$: Observable<Origin>;
 
   constructor(public service: HttpClient) {}
 
-  getAirports(): Observable<Origin> {
-    return this.service.get(this.AIRPORTS_API);
+  getOriginCities(): Observable<Origin> {
+    if (!this.originCities$) {
+      this.originCities$ = this.service.get<Origin>(this.AIRPORTS_API);
+    }
+    return this.originCities$;
   }
 
-  getFlights(
-    departureAirport: string,
-    arrivalAirport: string,
-    departureDate: string,
-    arrivalDate: string
-  ): Observable<any> {
-    this.departureAirport = departureAirport;
-    this.arrivalAirport = arrivalAirport;
-    this.departureDate = departureDate;
-    this.arrivalDate = arrivalDate;
-    return this.service.get(
-      `${this.FLIGHT_API}${departureAirport}/to/${arrivalAirport}/${departureDate}/${arrivalDate}/250/unique/?limit=15&offset-0`
-    );
-  }
-
-  getOriginCities(): Observable<Airport[]> {
-    return this.service.get<Origin>(this.AIRPORTS_API).pipe(
+  getAirports(): Observable<Airport[]> {
+    return this.getOriginCities().pipe(
       map(data =>
         data.airports.map(item => ({
           iataCode: item.iataCode,
@@ -55,10 +44,9 @@ export class AppService {
   }
 
   getDestinationCities(originIataCode): Observable<Airport[]> {
-    return this.service.get<Origin>(this.AIRPORTS_API).pipe(
+    return this.getOriginCities().pipe(
       map(data => {
-        // tslint:disable-next-line:no-string-literal
-        const dest = data["routes"][originIataCode.target.value];
+        const dest = data["routes"][originIataCode];
         return data.airports.reduce((result, airport) => {
           if (dest.indexOf(airport.iataCode) !== -1) {
             return [
@@ -73,6 +61,18 @@ export class AppService {
         }, []);
       })
     );
+  }
+
+  getSelectedInformationOfTheFlight(
+    departureAirport,
+    arrivalAirport,
+    departureDate,
+    arrivalDate
+  ) {
+    (this.departureAirport = departureAirport),
+      (this.arrivalAirport = arrivalAirport),
+      (this.departureDate = departureDate),
+      (this.arrivalDate = arrivalDate);
   }
 
   getResultFromSelectedTripOnWrapComponent() {

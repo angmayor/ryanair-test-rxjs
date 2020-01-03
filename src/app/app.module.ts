@@ -30,16 +30,6 @@ import { ButtonComponent } from "./components/shared/button/button.component";
     APP_ROUTING
   ],
 
-  exports: [
-    AppComponent,
-    AirportSelectorComponent,
-    FlightListComponent,
-    NavbarComponent,
-    WrapComponent,
-    FlightDatesComponent,
-    ButtonComponent
-  ],
-
   providers: [],
   bootstrap: [AppComponent]
 })

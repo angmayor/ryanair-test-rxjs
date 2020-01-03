@@ -39,7 +39,7 @@ describe("AppService", () => {
     expect(service).toBeTruthy();
   });
 
-  it("should getAirports", () => {
+  it("should return airports", () => {
     const airportsStub = {
       routes: { MAD: "DUB" },
       airports: [{ iataCode: "MAD", name: "Madrid" }]
@@ -54,7 +54,7 @@ describe("AppService", () => {
     request.flush(airportsStub);
   });
 
-  it("should getFlights", () => {
+  it("should return fligths", () => {
     const flightStub: FlightsDetail = {
       dateFrom: "24122019",
       dateTo: "15012020",
@@ -62,6 +62,10 @@ describe("AppService", () => {
       price: 200
     };
 
+    /*
+      service.getFlights = jest.fn()
+      service.getFlights = jest.fn(() => flightStub)
+    */
     const flightParametersStub: FlightParameters = {
       departureAirport: "MAD",
       arrivalAirport: "DUB",
@@ -85,6 +89,7 @@ describe("AppService", () => {
       `${service.FLIGHT_API}${flightParametersStub.departureAirport}/to/${flightParametersStub.arrivalAirport}/${flightParametersStub.departureDate}/${flightParametersStub.arrivalDate}/250/unique/?limit=15&offset-0`
     );
     expect(request.request.method).toBe("GET");
+    // delete this....
     request.flush(flightStub);
   });
 
@@ -96,15 +101,8 @@ describe("AppService", () => {
     };
     service
       .getOriginCities()
-      .pipe(
-        map(city =>
-          city.map(item => ({
-            iataCode: item.iataCode,
-            name: item.name
-          }))
-        )
-      )
-      .subscribe(city => expect(city).toEqual(cityStub));
+
+      //probar el
 
     const request = httpMock.expectOne(service.AIRPORTS_API);
     expect(request.request.method).toBe("GET");
@@ -113,22 +111,23 @@ describe("AppService", () => {
 
   it("should getDestinationCities", () => {
     const originIataCodeStub = "DUB";
-    service.getDestinationCities().pipe(
-      map(data => {
-        // tslint:disable-next-line:no-string-literal
-        const dest = data["routes"][originIataCode.target.value];
-        return data.airports.reduce((result, airport) => {
-          if (dest.indexOf(airport.iataCode) !== -1) {
-            return [
-              ...result,
-              {
-                iataCode: airport.iataCode,
-                name: airport.name
-              }
-            ];
-          }
-          return result;
-        }, []);
+    service.getDestinationCities();
+    // .pipe(
+    //   map(data => {
+    //     // tslint:disable-next-line:no-string-literal
+    //     const dest = data["routes"][originIataCode.target.value];
+    //     return data.airports.reduce((result, airport) => {
+    //       if (dest.indexOf(airport.iataCode) !== -1) {
+    //         return [
+    //           ...result,
+    //           {
+    //             iataCode: airport.iataCode,
+    //             name: airport.name
+    //           }
+    //         ];
+    //       }
+    //       return result;
+    //     }, []);
       });
   });
 });
